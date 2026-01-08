@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://prem_table_soap.com/backend/xsdObjects/team"
+        xmlns:tns="http://prem_table_soap.com/backend/xsdObjects/team"
+        elementFormDefault="qualified">
+
+    <!-- Reusable type -->
+    <xs:complexType name="TeamDetails">
+        <xs:sequence>
+            <xs:element name="team_id" type="xs:int"/>
+            <xs:element name="team_name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--  Get all request  -->
+    <xs:element name="GetAllTeamsRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <!--  Get all response  -->
+    <xs:element name="GetAllTeamsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TeamDetails" type="tns:TeamDetails" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- get one Request -->
+    <xs:element name="GetTeamByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="team_id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- get one Response -->
+    <xs:element name="GetTeamByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TeamDetails" type="tns:TeamDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>

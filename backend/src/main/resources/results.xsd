@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://prem_table_soap.com/backend/xsdObjects/results"
+        xmlns:tns="http://prem_table_soap.com/backend/xsdObjects/results"
+        elementFormDefault="qualified">
+
+    <!-- Reusable type -->
+    <xs:complexType name="ResultDetails">
+        <xs:sequence>
+            <xs:element name="result_id" type="xs:int"/>
+            <xs:element name="home_team_id" type="xs:int"/>
+            <xs:element name="away_team_id" type="xs:int" />
+            <xs:element name="home_team_goals" type="xs:int" />
+            <xs:element name="away_team_goals" type="xs:int" />
+            <xs:element name="result_date" type="xs:date" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--  Reusable enum type  -->
+    <xs:simpleType name="Status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESS"></xs:enumeration>
+            <xs:enumeration value="FAILURE"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--  Get all request  -->
+    <xs:element name="GetAllResultsRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <!--  Get all response  -->
+    <xs:element name="GetAllResultsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ResultDetails" type="tns:ResultDetails" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Get all results for a team -->
+    <xs:element name="GetResultsForTeamRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="team_id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--  Get all results for a team response  -->
+    <xs:element name="GetResultsForTeamResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ResultDetails" type="tns:ResultDetails" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Delete Request -->
+    <xs:element name="DeleteResultsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result_id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Delete Response -->
+    <xs:element name="DeleteResultsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Status" type="tns:Status"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
